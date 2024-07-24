@@ -1,0 +1,14 @@
+
+<launch>
+
+          <!-- Map server -->
+    <arg name="map_file" default="$(find diffrobot2_navigation)/maps/map2.yaml"/>
+    <node pkg="map_server" name="map_server"  type="map_server" args="$(arg map_file)" />
+
+      <!-- AMCL used for localization -->
+    <include file="$(find diffrobot2_navigation)/launch/amcl.launch" />
+
+    <include file="$(find diffrobot2_navigation)/launch/move_base.launch" />
+    
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find diffrobot2_navigation)/rviz/nav.rviz"/>
+</launch>
